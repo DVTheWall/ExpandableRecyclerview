@@ -12,8 +12,18 @@ android {
     }
     buildTypes {
         release {
+
             minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // buildConfigField "String", "URL", "\"http://192.168.11.107:8042/RRajeshAPI.asmx/\""
+            buildConfigField "boolean", "ENABLE_DEBUG", "true"
+
+        }
+        debug {
+
+            //   buildConfigField "String", "URL", "\"http://192.168.11.107:8042/RRajeshAPI.asmx/\""
+            buildConfigField "boolean", "ENABLE_DEBUG", "true"
         }
     }
 }
@@ -27,4 +37,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:recyclerview-v7:26.0.2'
     compile 'com.thoughtbot:expandablerecyclerview:1.0'
+    implementation files('libs/ksoap2-android-2.5.2.jar')
 }

@@ -7,16 +7,15 @@ import android.os.Parcelable;
  * Created by peacock on 12/12/17.
  */
 
-public class Phone {
+public class Phone implements Parcelable {
 
     private String name,number;
 
 
-  /*  public Phone(Parcel in) {
+    public Phone(Parcel in) {
         name = in.readString();
-        number =
+        number = in.readString();
     }
-*/
 
     public Phone() {
     }
@@ -42,9 +41,10 @@ public class Phone {
         this.name = name;
     }
 
-/*    @Override
+    @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
+        dest.writeString(number);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Phone {
         return 0;
     }
 
-    public static final Parcelable.Creator<Phone> CREATOR = new Creator<Phone>() {
+    public static final Parcelable.Creator<Phone> CREATOR = new Parcelable.Creator<Phone>() {
         @Override
         public Phone createFromParcel(Parcel in) {
             return new Phone(in);
@@ -63,5 +63,4 @@ public class Phone {
             return new Phone[size];
         }
     };
-    */
 }

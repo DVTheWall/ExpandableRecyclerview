@@ -5,7 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,11 +27,22 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    public String NAMESPACE = "http://tempuri.org/";
+    public String URL = "http://naimeshgalsar.com/oakscroll/doctorappservice.asmx?WSDL";
     private RecyclerView recyclerView;
     private ArrayList<MobileOS> mobileOSes;
     private RecyclerAdapter adapter;
+    //Submit Button To Click This Service
+    private String METHOD_NAME = "UserQuizHistory";
+    private String SOAP_ACTION = "http://tempuri.org/UserQuizHistory";
 
-    private ArrayList<history> mainlist;
+    private ArrayList<history> historyList, mainlist;
+
+    private static String getValue(String tag, Element element) {
+        NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+        Node node = nodeList.item(0);
+        return node.getNodeValue();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mobileOSes = new ArrayList<>();
         mainlist = new ArrayList<>();
 
+        history_ServiceCall();
         setData();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -95,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         mobileOSes.add(new MobileOS("Window Phone", windowPhones));
 
     }
-/*
+
     private void history_ServiceCall() {
 
 
@@ -142,12 +160,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if (result != null) {
 
-                    CommonUtility.Log("UserQuizHistory --> Response", result);
+                    //CommonUtility.Log("UserQuizHistory --> Response", result);
                     parseResult(result);
 
                 } else {
 
-                    CommonUtility.Log("UserQuizHistory --> Response", result);
+                    // CommonUtility.Log("UserQuizHistory --> Response", result);
 
                 }
 
@@ -203,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
             SetList(historyList);
 
 
-            CommonUtility.Log("History List -- > ", String.valueOf(historyList.size()));
+            Toast.makeText(this, "History List -- > " +String.valueOf(historyList.size()) , Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -249,5 +267,7 @@ public class MainActivity extends AppCompatActivity {
             i = i + 4;
         }
 
-    }*/
+        System.out.println("MainList --> " + mainlist.size());
+
+    }
 }
