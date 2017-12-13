@@ -26,7 +26,7 @@ public class RecyclerAdapter extends ExpandableRecyclerViewAdapter<OSViewHolder,
     @Override
     public OSViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.group_view_holder, parent, false);
+        View view = inflater.inflate(R.layout.item_header, parent, false);
 
         return new OSViewHolder(view);
     }
@@ -34,15 +34,15 @@ public class RecyclerAdapter extends ExpandableRecyclerViewAdapter<OSViewHolder,
     @Override
     public PhoneViewHolder onCreateChildViewHolder(ViewGroup parent, final int viewType) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.child_view_holder, parent, false);
+        View view = inflater.inflate(R.layout.item_child, parent, false);
 
         return new PhoneViewHolder(view);
     }
 
     @Override
     public void onBindChildViewHolder(PhoneViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
-        final Phone phone = ((MobileOS) group).getItems().get(childIndex);
-        holder.onBind(phone, group);
+        final History history = ((MobileOS) group).getItems().get(childIndex);
+        holder.onBind(history, group);
     }
 
     @Override

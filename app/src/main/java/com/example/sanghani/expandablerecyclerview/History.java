@@ -1,10 +1,13 @@
 package com.example.sanghani.expandablerecyclerview;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Dhaval on 11-Dec-17.
  */
 
-public class history {
+public class History implements Parcelable {
 
     private String QuestionText = "";
     private String AnswerText = "";
@@ -19,14 +22,10 @@ public class history {
     private String Percentage = "";
 
 
-
-
     private String AnswerText1 = "";
     private String AnswerText2 = "";
     private String AnswerText3 = "";
     private String AnswerText4 = "";
-
-
     private String Percentage1 = "";
     private String Percentage2 = "";
     private String Percentage3 = "";
@@ -34,6 +33,30 @@ public class history {
 
     private String FinalId = "";
 
+    public History(Parcel in) {
+
+        QuestionText = in.readString();
+        ShortDescription = in.readString();
+
+        Details = in.readString();
+        Image = in.readString();
+        PlaySubmitDateTime = in.readString();
+
+        AnswerText1 = in.readString();
+        AnswerText2 = in.readString();
+        AnswerText3 = in.readString();
+        AnswerText4 = in.readString();
+
+        Percentage1 = in.readString();
+        Percentage2 = in.readString();
+        Percentage3 = in.readString();
+        Percentage4 = in.readString();
+
+    }
+
+
+    public History() {
+    }
 
     public String getAnswerText1() {
         return AnswerText1;
@@ -105,9 +128,6 @@ public class history {
 
     public void setFinalId(String finalId) {
         FinalId = finalId;
-    }
-
-    public history() {
     }
 
     public String getQuestionText() {
@@ -196,5 +216,16 @@ public class history {
 
     public void setPercentage(String percentage) {
         Percentage = percentage;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

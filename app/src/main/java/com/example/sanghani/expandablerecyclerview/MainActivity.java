@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private String METHOD_NAME = "UserQuizHistory";
     private String SOAP_ACTION = "http://tempuri.org/UserQuizHistory";
 
-    private ArrayList<history> historyList, mainlist;
+    private ArrayList<History> historyList, mainlist;
+
 
     private static String getValue(String tag, Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         history_ServiceCall();
         setData();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -195,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < nList.getLength(); i++) {
 
-                history histo = new history();
+                History histo = new History();
                 Node node = nList.item(i);
 
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -229,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void SetList(ArrayList<history> historyList) {
+    private void SetList(ArrayList<History> historyList) {
 
 //        CommonUtility.Log(" SetList History List -- > ", String.valueOf(historyList.size()));
 
@@ -237,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
         while (i < historyList.size()) {
 
-            history data = new history();
+            History data = new History();
 
             data.setQuestionText(historyList.get(i).getQuestionText());
 
