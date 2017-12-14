@@ -9,17 +9,31 @@ import android.os.Parcelable;
 
 public class Phone implements Parcelable {
 
-    private String name,number;
+    public static final Parcelable.Creator<Phone> CREATOR = new Parcelable.Creator<Phone>() {
+        @Override
+        public Phone createFromParcel(Parcel in) {
+            return new Phone(in);
+        }
 
+        @Override
+        public Phone[] newArray(int size) {
+            return new Phone[size];
+        }
+    };
+    private String name, number;
 
     public Phone(Parcel in) {
         name = in.readString();
         number = in.readString();
     }
 
+
     public Phone() {
     }
 
+    public Phone(String name) {
+        this.name = name;
+    }
 
     public String getNumber() {
         return number;
@@ -37,10 +51,6 @@ public class Phone implements Parcelable {
         this.name = name;
     }
 
-    public Phone(String name) {
-        this.name = name;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
@@ -51,16 +61,4 @@ public class Phone implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Parcelable.Creator<Phone> CREATOR = new Parcelable.Creator<Phone>() {
-        @Override
-        public Phone createFromParcel(Parcel in) {
-            return new Phone(in);
-        }
-
-        @Override
-        public Phone[] newArray(int size) {
-            return new Phone[size];
-        }
-    };
 }

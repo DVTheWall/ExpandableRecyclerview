@@ -26,7 +26,7 @@ public class RecyclerAdapter extends ExpandableRecyclerViewAdapter<OSViewHolder,
     @Override
     public OSViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_header, parent, false);
+        View view = inflater.inflate(R.layout.group_view_holder, parent, false);
 
         return new OSViewHolder(view);
     }

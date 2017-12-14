@@ -10,11 +10,11 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imageview"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_margin="8dp"
-            android:id="@+id/imageview"
-            android:src="@color/black"/>
+            android:src="@color/black" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txt_question"

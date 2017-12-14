@@ -9,6 +9,17 @@ import android.os.Parcelable;
 
 public class History implements Parcelable {
 
+    public static final Creator<History> CREATOR = new Creator<History>() {
+        @Override
+        public History createFromParcel(Parcel in) {
+            return new History(in);
+        }
+
+        @Override
+        public History[] newArray(int size) {
+            return new History[size];
+        }
+    };
     private String QuestionText = "";
     private String AnswerText = "";
     private String AnswerId = "";
@@ -20,8 +31,6 @@ public class History implements Parcelable {
     private String PlaySubmitDateTime = "";
     private String SelectdAnswer = "";
     private String Percentage = "";
-
-
     private String AnswerText1 = "";
     private String AnswerText2 = "";
     private String AnswerText3 = "";
@@ -30,8 +39,8 @@ public class History implements Parcelable {
     private String Percentage2 = "";
     private String Percentage3 = "";
     private String Percentage4 = "";
-
     private String FinalId = "";
+
 
     public History(Parcel in) {
 
@@ -53,7 +62,6 @@ public class History implements Parcelable {
         Percentage4 = in.readString();
 
     }
-
 
     public History() {
     }
@@ -226,6 +234,24 @@ public class History implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeString(QuestionText);
+        parcel.writeString(AnswerText);
+        parcel.writeString(AnswerId);
+        parcel.writeString(VideoId);
+        parcel.writeString(Url);
+        parcel.writeString(ShortDescription);
+        parcel.writeString(Details);
+        parcel.writeString(Image);
+        parcel.writeString(PlaySubmitDateTime);
+        parcel.writeString(SelectdAnswer);
+        parcel.writeString(Percentage);
+        parcel.writeString(AnswerText1);
+        parcel.writeString(AnswerText2);
+        parcel.writeString(AnswerText3);
+        parcel.writeString(AnswerText4);
+        parcel.writeString(Percentage1);
+        parcel.writeString(Percentage2);
+        parcel.writeString(Percentage3);
+        parcel.writeString(Percentage4);
     }
 }

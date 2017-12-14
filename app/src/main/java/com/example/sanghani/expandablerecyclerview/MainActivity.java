@@ -27,6 +27,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*
+    This Expandable Recyclerview Link
+        http://www.devexchanges.info/2016/09/expandable-recyclerview-in-android.html
+
+      */
     public String NAMESPACE = "http://tempuri.org/";
     public String URL = "http://naimeshgalsar.com/oakscroll/doctorappservice.asmx?WSDL";
     private RecyclerView recyclerView;
@@ -55,13 +60,35 @@ public class MainActivity extends AppCompatActivity {
         mainlist = new ArrayList<>();
 
         history_ServiceCall();
-        setData();
+
+        //    setData();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        // Just Check Important Point Comment
+
+ /*       mainlist = new ArrayList<>();
+        for (int i=0;i<2;i++) {
+            History history = new History();
+            history.setQuestionText("Nexus One");
+            history.setAnswerText1("HELLO WORLD");
+            history.setAnswerText2("HELLO WORLD");
+            history.setAnswerText3("HELLO WORLD");
+            history.setAnswerText4("HELLO WORLD");
+
+            history.setQuestionText("Nexus One");
+            history.setPercentage1("12");
+            history.setPercentage2("12");
+            history.setPercentage3("12");
+            history.setPercentage4("12");
+            mainlist.add(history);
+
+        }*/
+
         adapter = new RecyclerAdapter(this, mobileOSes);
         recyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -77,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setData() {
+
+
         ArrayList<Phone> iphones = new ArrayList<>();
         iphones.add(new Phone("iPhone 4"));
         iphones.add(new Phone("iPhone 4S"));
@@ -110,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
         windowPhones.add(new Phone("Nokia Lumia 820"));
         windowPhones.add(new Phone("Nokia Lumia 920"));
 
-        mobileOSes.add(new MobileOS("iOS", iphones));
-        mobileOSes.add(new MobileOS("Android", nexus));
-        mobileOSes.add(new MobileOS("Window Phone", windowPhones));
+        mobileOSes.add(new MobileOS("iOS", mainlist));
+//        mobileOSes.add(new MobileOS("Android", nexus));
+//        mobileOSes.add(new MobileOS("Window Phone", windowPhones));
 
     }
 
@@ -223,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
             SetList(historyList);
 
 
-            Toast.makeText(this, "History List -- > " +String.valueOf(historyList.size()) , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "History List -- > " + String.valueOf(historyList.size()), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -237,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
         int i = 0;
 
-        while (i < historyList.size()) {
+        while (i < 16) {
 
             History data = new History();
 
@@ -266,10 +295,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             mainlist.add(data);
+
+
             i = i + 4;
         }
 
+        mobileOSes.add(new MobileOS("iOS", mainlist));
+
+
         System.out.println("MainList --> " + mainlist.size());
+
 
     }
 }
